@@ -17,27 +17,27 @@ const features = [
   {
     icon: Sunny,
     title: '9개 도시 실시간 날씨',
-    desc: '서울·수원·부산·대구·인천·광주·대전·울산·전주 기온이랑 날씨 상태를 OpenWeatherMap API로 실시간으로 받아옴.',
+    desc: '서울, 수원, 부산... 이렇게 9개 도시 날씨를 OpenWeatherMap에서 실시간으로 긁어옴.',
   },
   {
     icon: Refresh,
     title: '날씨 기반 카페 메뉴 추천',
-    desc: '도시가 더우면 ICE, 선선하면 HOT 메뉴 위주로 추천됨. season 태그로 디저트·건강 메뉴도 같이 걸러짐.',
+    desc: '더운 도시 고르면 아이스 위주로, 선선하면 핫 위주로 메뉴가 추천됨. 디저트나 건강 메뉴는 계절 태그로 알아서 걸러짐.',
   },
   {
     icon: Star,
     title: '즐겨찾기 (도시 ♡ / 메뉴 ☆)',
-    desc: '도시 카드 하트, 메뉴 카드 별 누르면 바로 찜됨. 상단 카운터에도 즉시 반영되고, 즐겨찾기 페이지에서 한 번에 모아볼 수 있음.',
+    desc: '도시는 하트, 메뉴는 별 눌러서 찜. 위에 카운터 숫자도 바로 바뀌고 즐겨찾기 페이지 가면 몰아서 볼 수 있음.',
   },
   {
     icon: Odometer,
     title: '섭씨/화씨 단위 전환 + 5일 예보',
-    desc: '아무 데서나 °C/°F 전환 가능. 도시 상세 들어가면 습도·풍속에 5일 예보까지 같이 보임.',
+    desc: '°C/°F는 아무 데서나 바꿀 수 있고, 도시 눌러서 상세로 들어가면 습도랑 풍속에 5일치 예보까지 나옴.',
   },
   {
     icon: Moon,
     title: '시스템 다크모드 자동 대응',
-    desc: 'OS 다크모드 설정 그대로 따라감. 따로 토글 안 만들어도 기기 설정 바뀌면 화면 톤도 같이 바뀜.',
+    desc: '핸드폰이나 컴퓨터 다크모드 켜져 있으면 앱도 알아서 어둡게 바뀜. 버튼 따로 안 만들어도 됨.',
   },
 ]
 
@@ -45,42 +45,42 @@ const myAdditions = [
   {
     title: '카페 메뉴 추천 컨셉',
     file: 'WeatherParent.vue',
-    desc: '"날씨 대시보드" 하나였던 걸 카페 메뉴 추천이랑 엮은 게 원래 스펙엔 없던 부분.',
+    desc: '원래 스펙은 그냥 날씨 대시보드였는데, 심심해서 카페 메뉴 추천을 붙여봄.',
   },
   {
     title: '도시 9개 · 카페 메뉴 8종 데이터',
     file: 'useCityWeather.js / menuList.js',
-    desc: '기본 도시(서울·수원·부산) 말고 대구·인천·광주·대전·울산·전주 6개 추가함. 카페 메뉴 8종은 스펙에 아예 없어서 그냥 내가 다 짬.',
+    desc: '도시는 대구·인천·광주·대전·울산·전주 6개 더 넣었고, 메뉴 8개는 스펙에 아예 없어서 그냥 내가 다 지어냄.',
   },
   {
     title: '최근 조회 도시 기록 (watch)',
     file: 'WeatherCafeRecommend.vue — recentCities',
-    desc: '선택한 도시 watch로 감시해서 최근 조회한 도시 3개 기록하는 로직.',
+    desc: '도시 하나 고를 때마다 watch로 감시해서 최근 본 도시 3개까지 기록해둠.',
   },
   {
     title: '날씨 기반 추천 카피 자동 생성',
     file: 'recommendCaption.js',
-    desc: '날씨 상태 8종 × 기온(hot/cool) 조합으로 추천 문구 16가지 만들어서 카페 추천 섹션에 띄움.',
+    desc: '날씨랑 기온 조합해서 추천 멘트를 16가지 자동으로 뽑아내게 만듦. 매번 똑같은 말 뜨면 재미없어서.',
   },
   {
     title: '즐겨찾기 store 2개',
     file: 'cafeStore.js / cityFavoriteStore.js',
-    desc: '스펙은 configStore(단위 변환) 하나만 있으면 되는데, 메뉴 즐겨찾기랑 도시 즐겨찾기 store를 따로 만듦.',
+    desc: '즐겨찾기가 메뉴 따로 도시 따로라서 store도 두 개로 나눠서 만듦.',
   },
   {
     title: '즐겨찾기 전용 페이지',
     file: 'FavoritesView.vue — /favorites',
-    desc: '찜한 도시랑 메뉴 한곳에 모아보는 화면. View랑 Route 둘 다 내가 추가한 거.',
+    desc: '찜한 거 모아보는 페이지가 없길래 하나 새로 만듦.',
   },
   {
     title: '대기질(미세먼지) API 연동',
     file: 'CityWeatherDetailView.vue — air_pollution',
-    desc: '현재 날씨 응답 좌표 그대로 써서 대기질 API 한 번 더 호출함. AQI 배지로 표시.',
+    desc: '날씨 API가 좌표를 같이 주길래 그거 그대로 써서 미세먼지 API도 붙여봄.',
   },
   {
     title: '날씨 상태별 다이내믹 테마',
     file: 'weatherTheme.js',
-    desc: '맑음·흐림·비·눈·뇌우·안개 상태에 따라 accent 컬러랑 그라디언트, 아이콘이 바뀌게 만든 디자인 시스템.',
+    desc: '날씨 상태마다 색이랑 아이콘이 다르게 나오게 하고 싶어서 테마 파일 하나 따로 뺌.',
   },
 ]
 
@@ -95,23 +95,24 @@ const techStack = [
 
 const troubleshooting = [
   {
-    title: '전역 CSS 클래스명 충돌로 "상세보기" 버튼이 안 보임',
-    problem: '상세보기 버튼 눌러도 반응 없고, 온도 숫자 뒤에 버튼이 가려져서 아예 안 보였음.',
-    cause:
-      '초기 실습 때 쓰던 전역 CSS(practice.css)에 .weather-card/.btn-detail 이름이 이미 있었는데, 새 컴포넌트가 같은 클래스명을 그대로 써서 전역 규칙(position: absolute 등)이 새어 들어옴.',
-    fix: '클래스명을 wc-card/wc-badge/wc-detail-btn처럼 고유 접두어로 다 바꿔서 충돌 자체를 없앰.',
+    title: '"상세보기" 버튼이 온도 숫자 뒤에 가려져서 안 보임',
+    desc: '눌러도 반응이 없어서 한참 봤는데, 예전 실습 때 쓰던 전역 CSS(practice.css)에 .weather-card, .btn-detail 이름이 이미 있었고 새로 만든 컴포넌트가 그 이름을 그대로 써버려서 스타일이 새어 들어온 거였음. 클래스명을 wc-card, wc-badge처럼 고유 접두어로 싹 바꾸니까 바로 해결됨.',
   },
   {
-    title: '날씨 상태가 "온흐림", "실 비"처럼 어색하게 표시됨',
-    problem: '날씨 상태 텍스트가 인코딩 깨진 것처럼 어색하게 나옴.',
-    cause: '인코딩 문제가 아니라 OpenWeatherMap lang=kr 자동 번역(weather[0].description)이 원래 그렇게 어색한 거였음.',
-    fix: 'weather[0].main(Clear/Clouds/Rain 같은 영문 코드) 기준으로 자연스러운 한글 라벨 직접 매핑하는 유틸(weatherLabel.js) 만들어서 적용.',
+    title: '날씨 상태가 "온흐림", "실 비"처럼 나옴',
+    desc: '처음엔 인코딩 깨진 줄 알았는데 아니고, OpenWeatherMap이 lang=kr로 줄 때 번역 자체가 원래 어색한 거였음. weather[0].main 영문 코드(Clear/Clouds/Rain...) 기준으로 한글 라벨 직접 매핑하는 파일(weatherLabel.js) 하나 만들어서 해결.',
   },
   {
-    title: '홈 탭이 다른 페이지에서도 항상 활성 색으로 보임',
-    problem: '"🏠 메인" 링크가 /about, /favorites 가 있어도 계속 파란 활성 색으로 나옴.',
-    cause: 'Vue Router의 router-link-active는 "부분 일치"라서, 모든 경로가 "/"로 시작하는 이상 홈 링크는 항상 활성으로 잡힘.',
-    fix: '정확히 일치할 때만 붙는 router-link-exact-active 기준으로 스타일 다시 걸어서 고침.',
+    title: '홈 링크가 다른 페이지 가도 계속 활성 색으로 보임',
+    desc: '/about 같은 데 가도 "🏠 메인"이 계속 파란색이길래 찾아보니, router-link-active가 부분 일치라서 모든 경로가 "/"로 시작하니까 항상 걸리는 거였음. router-link-exact-active로 바꿔서 고침.',
+  },
+  {
+    title: '화면 좁히면 nav 메뉴가 다 뭉개짐',
+    desc: '반응형 만들면서 폭 줄여봤더니 링크 4개랑 단위토글, 즐겨찾기 카운터가 한 줄에 다 우겨넣어져서 글자끼리 겹쳐버림. 640px 밑에서는 링크를 다 숨기고 햄버거 버튼 하나로 바꿔서, 누르면 드롭다운으로 펼쳐지게 만듦. 페이지 이동하면 자동으로 닫히게 처리.',
+  },
+  {
+    title: '폭을 극단적으로 줄이면 카드가 깨짐',
+    desc: '최소 폭을 아예 안 걸어놨더니 300px 밑으로 줄일 때 카드 안 글자랑 배지가 서로 겹치기 시작함. body에 min-width: 320px 걸어서 그 밑으로는 그냥 가로 스크롤이 뜨게 처리함. 억지로 찌그러지는 것보단 스크롤 생기는 게 나음.',
   },
 ]
 </script>
@@ -174,9 +175,7 @@ const troubleshooting = [
               <el-icon :size="16"><WarningFilled /></el-icon>
               <h4>{{ item.title }}</h4>
             </div>
-            <p><span class="trouble-label">증상</span>{{ item.problem }}</p>
-            <p><span class="trouble-label">원인</span>{{ item.cause }}</p>
-            <p><span class="trouble-label">해결</span>{{ item.fix }}</p>
+            <p>{{ item.desc }}</p>
           </div>
         </div>
       </el-tab-pane>
@@ -367,14 +366,6 @@ const troubleshooting = [
 }
 .trouble-card p:last-child {
   margin-bottom: 0;
-}
-.trouble-label {
-  display: inline-block;
-  min-width: 40px;
-  margin-right: 6px;
-  color: var(--app-text-primary);
-  font-weight: 700;
-  font-size: 12px;
 }
 .home-btn {
   width: 100%;
