@@ -38,7 +38,7 @@ Element Plus, OpenWeatherMap API (현재 날씨 / 5일 예보 / 대기질)
 
 ## 배포 링크
 
-- (아직 미배포 — Day8에서 채울 것)
+- https://skala-vue-dusky-zeta.vercel.app/
 
 ## 단원별 커스터마이징 기록
 
@@ -87,9 +87,9 @@ Element Plus, OpenWeatherMap API (현재 날씨 / 5일 예보 / 대기질)
 
 - [x] API 키를 `.env`(`VITE_OPENWEATHER_API_KEY`)로 이전, `.gitignore`에 `.env` 추가
 - [x] `npm run build` / `npm run lint` 통과 확인
-- [ ] GitHub 공개 저장소 생성 + push
-- [ ] Vercel/Netlify/GitHub Pages 중 하나로 배포, 배포 플랫폼에도 API 키 등록
-- [ ] 위 배포 링크 채워넣기
+- [x] GitHub 공개 저장소 생성 + push (https://github.com/gkyeon/skala-vue)
+- [x] Vercel로 배포, 환경변수에 API 키 등록
+- [x] 위 배포 링크 채워넣기
 
 ## 트러블슈팅
 
