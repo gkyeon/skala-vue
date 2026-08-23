@@ -1,8 +1,12 @@
-# Weather Dashboard (카페 메뉴 추천)
+# 날씨에 따른 카페 메뉴 추천
+
+2026.08.23.
+
+skala 광주캠퍼스 김하연
 
 ## 프로젝트 소개
 
-[바로가기](https://skala-vue-dusky-zeta.vercel.app/)
+🔗 [바로가기](https://skala-vue-dusky-zeta.vercel.app/) 
 
 원래의 "날씨 대시보드" 에 카페 메뉴 추천을 더해서 도시
 기온에 맞는 메뉴를 골라주는 프로젝트. 
@@ -182,7 +186,7 @@ npm run dev
 
 
 
-## 구현 로직 설명
+## 구현 로직 설명 (with claude)
 
 ### 1. 대기질 API의 순차 호출 처리 (`CityWeatherDetailView.vue`)
 
