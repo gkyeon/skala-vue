@@ -18,6 +18,10 @@ coverage
 .env
 .env.local
 
+# 개인 작업 메모 (제출용 아님)
+ASSIGNMENT_GUIDE.md
+PLAN.md
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
