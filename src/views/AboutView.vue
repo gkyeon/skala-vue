@@ -41,6 +41,49 @@ const features = [
   },
 ]
 
+const myAdditions = [
+  {
+    title: '카페 메뉴 추천 컨셉',
+    file: 'WeatherParent.vue',
+    desc: '"날씨 대시보드" 단일 주제에 카페 메뉴 추천을 붙인 것 자체가 스펙에 없던 아이디어입니다.',
+  },
+  {
+    title: '도시 9개 · 카페 메뉴 8종 데이터',
+    file: 'useCityWeather.js / menuList.js',
+    desc: '기본 도시(서울·수원·부산) 외 대구·인천·광주·대전·울산·전주 6개를 추가했고, 카페 메뉴 8종은 스펙에 아예 없어서 전부 직접 기획했습니다.',
+  },
+  {
+    title: '최근 조회 도시 기록 (watch)',
+    file: 'WeatherCafeRecommend.vue — recentCities',
+    desc: '선택한 도시를 watch로 감시해서 최근 조회한 도시 3개를 기록하는 반응형 로직입니다.',
+  },
+  {
+    title: '날씨 기반 추천 카피 자동 생성',
+    file: 'recommendCaption.js',
+    desc: '날씨 상태 8종 × 기온(hot/cool) 조합으로 16가지 추천 문구를 만들어 카페 추천 섹션에 보여줍니다.',
+  },
+  {
+    title: '즐겨찾기 store 2개',
+    file: 'cafeStore.js / cityFavoriteStore.js',
+    desc: '스펙은 configStore(단위 변환) 하나만 요구하는데, 메뉴 즐겨찾기·도시 즐겨찾기 store를 각각 따로 추가했습니다.',
+  },
+  {
+    title: '즐겨찾기 전용 페이지',
+    file: 'FavoritesView.vue — /favorites',
+    desc: '찜한 도시와 메뉴를 한곳에 모아 보는 화면으로, 본인이 추가한 View + Route입니다.',
+  },
+  {
+    title: '대기질(미세먼지) API 연동',
+    file: 'CityWeatherDetailView.vue — air_pollution',
+    desc: '현재 날씨 응답의 좌표를 재사용해서 대기질 API를 추가로 호출하고, AQI 배지로 보여줍니다.',
+  },
+  {
+    title: '날씨 상태별 다이내믹 테마',
+    file: 'weatherTheme.js',
+    desc: '맑음·흐림·비·눈·뇌우·안개 6종 상태에 따라 accent 컬러·그라디언트·아이콘이 바뀌는 디자인 시스템입니다.',
+  },
+]
+
 const techStack = [
   { name: 'Vue 3', role: 'Composition API + <script setup>' },
   { name: 'Vite', role: '개발 서버 · 번들러' },
@@ -93,6 +136,17 @@ const troubleshooting = [
           더운 날엔 시원한 메뉴, 선선한 날엔 따뜻한 메뉴 순으로 추천되고, 도시·메뉴
           즐겨찾기는 브라우저에 저장됩니다.
         </p>
+
+        <h4 class="intro-sub-title">교수님 스펙 대비 내가 직접 추가한 것</h4>
+        <div class="mine-list">
+          <div v-for="item in myAdditions" :key="item.title" class="mine-row">
+            <div class="mine-head">
+              <h4>{{ item.title }}</h4>
+              <code class="mine-file">{{ item.file }}</code>
+            </div>
+            <p>{{ item.desc }}</p>
+          </div>
+        </div>
       </el-tab-pane>
 
       <el-tab-pane label="주요 기능" name="features">
@@ -191,6 +245,50 @@ const troubleshooting = [
 }
 .tab-desc:last-child {
   margin-bottom: 0;
+}
+.intro-sub-title {
+  margin: 20px 0 12px;
+  color: var(--app-text-secondary);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+.mine-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.mine-row {
+  background: var(--app-page-bg);
+  border-radius: var(--app-radius-md);
+  padding: 12px 14px;
+}
+.mine-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+.mine-head h4 {
+  margin: 0;
+  color: var(--app-text-primary);
+  font-size: 14px;
+}
+.mine-file {
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 11px;
+  color: var(--app-accent-cool);
+  background: var(--app-accent-cool-bg);
+  padding: 2px 8px;
+  border-radius: var(--app-radius-pill);
+}
+.mine-row p {
+  margin: 0;
+  color: var(--app-text-secondary);
+  font-size: 13px;
+  line-height: 1.6;
 }
 .feature-list {
   display: flex;
