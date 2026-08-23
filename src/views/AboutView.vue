@@ -17,27 +17,27 @@ const features = [
   {
     icon: Sunny,
     title: '9개 도시 실시간 날씨',
-    desc: '서울·수원·부산·대구·인천·광주·대전·울산·전주의 현재 기온과 날씨 상태를 OpenWeatherMap API로 실시간 조회합니다.',
+    desc: '서울·수원·부산·대구·인천·광주·대전·울산·전주 기온이랑 날씨 상태를 OpenWeatherMap API로 실시간으로 받아옴.',
   },
   {
     icon: Refresh,
     title: '날씨 기반 카페 메뉴 추천',
-    desc: '선택한 도시가 더우면 ICE 메뉴를, 선선하면 HOT 메뉴를 우선 추천합니다. 계절(season) 태그로 디저트·건강 메뉴도 함께 필터링돼요.',
+    desc: '도시가 더우면 ICE, 선선하면 HOT 메뉴 위주로 추천됨. season 태그로 디저트·건강 메뉴도 같이 걸러짐.',
   },
   {
     icon: Star,
     title: '즐겨찾기 (도시 ♡ / 메뉴 ☆)',
-    desc: '도시 카드의 하트, 메뉴 카드의 별을 눌러 찜하면 상단 카운터에 즉시 반영되고, 전용 "즐겨찾기" 페이지에서 한눈에 모아볼 수 있습니다.',
+    desc: '도시 카드 하트, 메뉴 카드 별 누르면 바로 찜됨. 상단 카운터에도 즉시 반영되고, 즐겨찾기 페이지에서 한 번에 모아볼 수 있음.',
   },
   {
     icon: Odometer,
     title: '섭씨/화씨 단위 전환 + 5일 예보',
-    desc: '어디서든 °C/°F를 전환할 수 있고, 도시 상세 페이지에서는 습도·풍속과 함께 5일치 예보를 확인할 수 있습니다.',
+    desc: '아무 데서나 °C/°F 전환 가능. 도시 상세 들어가면 습도·풍속에 5일 예보까지 같이 보임.',
   },
   {
     icon: Moon,
     title: '시스템 다크모드 자동 대응',
-    desc: 'OS 다크모드 설정을 그대로 따라가는 반투명 유리(glass) 카드 UI로, 별도 토글 없이 기기 설정에 맞춰 화면 톤이 바뀝니다.',
+    desc: 'OS 다크모드 설정 그대로 따라감. 따로 토글 안 만들어도 기기 설정 바뀌면 화면 톤도 같이 바뀜.',
   },
 ]
 
@@ -45,42 +45,42 @@ const myAdditions = [
   {
     title: '카페 메뉴 추천 컨셉',
     file: 'WeatherParent.vue',
-    desc: '"날씨 대시보드" 단일 주제에 카페 메뉴 추천을 붙인 것 자체가 스펙에 없던 아이디어입니다.',
+    desc: '"날씨 대시보드" 하나였던 걸 카페 메뉴 추천이랑 엮은 게 원래 스펙엔 없던 부분.',
   },
   {
     title: '도시 9개 · 카페 메뉴 8종 데이터',
     file: 'useCityWeather.js / menuList.js',
-    desc: '기본 도시(서울·수원·부산) 외 대구·인천·광주·대전·울산·전주 6개를 추가했고, 카페 메뉴 8종은 스펙에 아예 없어서 전부 직접 기획했습니다.',
+    desc: '기본 도시(서울·수원·부산) 말고 대구·인천·광주·대전·울산·전주 6개 추가함. 카페 메뉴 8종은 스펙에 아예 없어서 그냥 내가 다 짬.',
   },
   {
     title: '최근 조회 도시 기록 (watch)',
     file: 'WeatherCafeRecommend.vue — recentCities',
-    desc: '선택한 도시를 watch로 감시해서 최근 조회한 도시 3개를 기록하는 반응형 로직입니다.',
+    desc: '선택한 도시 watch로 감시해서 최근 조회한 도시 3개 기록하는 로직.',
   },
   {
     title: '날씨 기반 추천 카피 자동 생성',
     file: 'recommendCaption.js',
-    desc: '날씨 상태 8종 × 기온(hot/cool) 조합으로 16가지 추천 문구를 만들어 카페 추천 섹션에 보여줍니다.',
+    desc: '날씨 상태 8종 × 기온(hot/cool) 조합으로 추천 문구 16가지 만들어서 카페 추천 섹션에 띄움.',
   },
   {
     title: '즐겨찾기 store 2개',
     file: 'cafeStore.js / cityFavoriteStore.js',
-    desc: '스펙은 configStore(단위 변환) 하나만 요구하는데, 메뉴 즐겨찾기·도시 즐겨찾기 store를 각각 따로 추가했습니다.',
+    desc: '스펙은 configStore(단위 변환) 하나만 있으면 되는데, 메뉴 즐겨찾기랑 도시 즐겨찾기 store를 따로 만듦.',
   },
   {
     title: '즐겨찾기 전용 페이지',
     file: 'FavoritesView.vue — /favorites',
-    desc: '찜한 도시와 메뉴를 한곳에 모아 보는 화면으로, 본인이 추가한 View + Route입니다.',
+    desc: '찜한 도시랑 메뉴 한곳에 모아보는 화면. View랑 Route 둘 다 내가 추가한 거.',
   },
   {
     title: '대기질(미세먼지) API 연동',
     file: 'CityWeatherDetailView.vue — air_pollution',
-    desc: '현재 날씨 응답의 좌표를 재사용해서 대기질 API를 추가로 호출하고, AQI 배지로 보여줍니다.',
+    desc: '현재 날씨 응답 좌표 그대로 써서 대기질 API 한 번 더 호출함. AQI 배지로 표시.',
   },
   {
     title: '날씨 상태별 다이내믹 테마',
     file: 'weatherTheme.js',
-    desc: '맑음·흐림·비·눈·뇌우·안개 6종 상태에 따라 accent 컬러·그라디언트·아이콘이 바뀌는 디자인 시스템입니다.',
+    desc: '맑음·흐림·비·눈·뇌우·안개 상태에 따라 accent 컬러랑 그라디언트, 아이콘이 바뀌게 만든 디자인 시스템.',
   },
 ]
 
@@ -96,25 +96,22 @@ const techStack = [
 const troubleshooting = [
   {
     title: '전역 CSS 클래스명 충돌로 "상세보기" 버튼이 안 보임',
-    problem:
-      '날씨 카드의 "상세보기" 버튼을 눌러도 반응이 없고, 화면에는 버튼이 온도 숫자 뒤에 가려져 보이지 않았습니다.',
+    problem: '상세보기 버튼 눌러도 반응 없고, 온도 숫자 뒤에 버튼이 가려져서 아예 안 보였음.',
     cause:
-      '초기 실습 때 쓰던 전역 CSS(practice.css)에 .weather-card/.btn-detail 같은 이름이 이미 존재했는데, 새로 만든 컴포넌트가 <style scoped>도 없이 같은 클래스명을 그대로 재사용하면서 전역 규칙(position: absolute 등)이 그대로 새어 들어왔습니다.',
-    fix: '컴포넌트 클래스명을 wc-card/wc-badge/wc-detail-btn처럼 고유 접두어로 전부 바꿔서 이름 충돌 자체를 없앴습니다.',
+      '초기 실습 때 쓰던 전역 CSS(practice.css)에 .weather-card/.btn-detail 이름이 이미 있었는데, 새 컴포넌트가 같은 클래스명을 그대로 써서 전역 규칙(position: absolute 등)이 새어 들어옴.',
+    fix: '클래스명을 wc-card/wc-badge/wc-detail-btn처럼 고유 접두어로 다 바꿔서 충돌 자체를 없앰.',
   },
   {
     title: '날씨 상태가 "온흐림", "실 비"처럼 어색하게 표시됨',
-    problem: '도시별 날씨 상태 텍스트가 인코딩이 깨진 것처럼 부자연스럽게 나왔습니다.',
-    cause:
-      '인코딩 문제가 아니라 OpenWeatherMap의 lang=kr 자동 번역(weather[0].description) 자체가 어색한 번역이었습니다.',
-    fix: '번역 텍스트 대신 weather[0].main(Clear/Clouds/Rain 등 영문 코드)을 기준으로 자연스러운 한글 라벨을 직접 매핑하는 유틸(weatherLabel.js)을 만들어 적용했습니다.',
+    problem: '날씨 상태 텍스트가 인코딩 깨진 것처럼 어색하게 나옴.',
+    cause: '인코딩 문제가 아니라 OpenWeatherMap lang=kr 자동 번역(weather[0].description)이 원래 그렇게 어색한 거였음.',
+    fix: 'weather[0].main(Clear/Clouds/Rain 같은 영문 코드) 기준으로 자연스러운 한글 라벨 직접 매핑하는 유틸(weatherLabel.js) 만들어서 적용.',
   },
   {
     title: '홈 탭이 다른 페이지에서도 항상 활성 색으로 보임',
-    problem: '"🏠 메인" 네비게이션 링크가 /about, /favorites 등 다른 페이지에 있어도 계속 파란 활성 색으로 표시됐습니다.',
-    cause:
-      'Vue Router의 router-link-active 클래스는 "부분 일치"라서, 모든 경로가 "/"로 시작하는 이상 홈 링크는 항상 활성 상태로 인식됩니다.',
-    fix: 'router-link-active 대신 정확히 일치할 때만 붙는 router-link-exact-active 클래스를 기준으로 스타일을 다시 걸었습니다.',
+    problem: '"🏠 메인" 링크가 /about, /favorites 가 있어도 계속 파란 활성 색으로 나옴.',
+    cause: 'Vue Router의 router-link-active는 "부분 일치"라서, 모든 경로가 "/"로 시작하는 이상 홈 링크는 항상 활성으로 잡힘.',
+    fix: '정확히 일치할 때만 붙는 router-link-exact-active 기준으로 스타일 다시 걸어서 고침.',
   },
 ]
 </script>
@@ -123,21 +120,21 @@ const troubleshooting = [
   <div class="about-container">
     <div class="about-hero">
       <h1 class="about-title">☕️ 날씨 기반 카페 추천</h1>
-      <p class="about-lead">도시 날씨에 어울리는 카페 메뉴를 추천해주는 대시보드입니다.</p>
+      <p class="about-lead">도시 날씨에 어울리는 카페 메뉴 추천해주는 대시보드.</p>
     </div>
 
     <el-tabs v-model="activeTab" class="about-tabs">
       <el-tab-pane label="소개" name="intro">
         <p class="tab-desc">
           원래 과제 주제는 "날씨 대시보드" 하나인데, 여기에 <strong>카페 메뉴 추천</strong>을
-          더해서 도시 기온에 맞는 메뉴를 골라주는 걸로 방향을 잡았습니다.
+          더해서 도시 기온에 맞는 메뉴 골라주는 걸로 방향 잡음.
         </p>
         <p class="tab-desc">
           더운 날엔 시원한 메뉴, 선선한 날엔 따뜻한 메뉴 순으로 추천되고, 도시·메뉴
-          즐겨찾기는 브라우저에 저장됩니다.
+          즐겨찾기는 브라우저에 저장됨.
         </p>
 
-        <h4 class="intro-sub-title">교수님 스펙 대비 내가 직접 추가한 것</h4>
+        <h4 class="intro-sub-title">교수님 스펙엔 없던, 내가 추가한 것</h4>
         <div class="mine-list">
           <div v-for="item in myAdditions" :key="item.title" class="mine-row">
             <div class="mine-head">
