@@ -163,3 +163,77 @@ npm run dev
 
 API 키는 `.env`의 `VITE_OPENWEATHER_API_KEY`로만 참조하고, 코드에는 절대
 하드코딩하지 않음. `.env`는 `.gitignore`에 포함하여 커밋하지 않음.
+
+## 구현하면서 까다로웠던 로직
+
+### 1. 대기질 API의 순차 호출 처리 (`CityWeatherDetailView.vue`)
+
+현재 날씨·5일 예보는 `Promise.all`로 동시에 요청 가능하지만, 대기질(미세먼지)
+API는 위도/경도가 있어야 호출할 수 있고 그 좌표는 현재 날씨 응답에만 들어있음.
+즉 세 API를 전부 동시에 쏠 수 없고, 현재 날씨 응답이 오길 기다렸다가 그 안의
+`coord.lat`/`coord.lon`으로 대기질 API를 이어서 호출해야 함. 병렬 호출과
+순차 호출을 한 함수 안에서 같이 처리해야 하는 부분.
+
+```js
+const [currentRes, forecastRes] = await Promise.all([...])  // 병렬
+// currentRes의 coord를 받은 뒤에야 아래 호출이 가능함 (순차)
+const airRes = await axios.get(AIR_QUALITY_URL, {
+  params: { lat: currentRes.data.coord.lat, lon: currentRes.data.coord.lon, appid: API_KEY },
+})
+```
+
+대기질 호출은 별도의 `try/catch`로 감싸서, 이 요청이 실패해도 이미 받아온
+현재 날씨·예보 화면에는 영향이 없도록 격리함.
+
+### 2. 3시간 간격 예보 데이터를 5일치로 축약 (`CityWeatherDetailView.vue`)
+
+OpenWeatherMap의 5일 예보 API는 3시간 간격으로 하루 8개, 5일이면 총 40개의
+데이터를 반환함. 이걸 그대로 보여주면 화면이 감당이 안 돼서, 하루를 대표할
+값 하나만 뽑아 5개로 줄여야 했음. `dt_txt`에 `12:00:00`이 포함된 항목만
+필터링하는 방식으로 해결함(정오 기온을 그날의 대표값으로 사용).
+
+```js
+forecastList.value = forecastRes.data.list
+  .filter((item) => item.dt_txt.includes('12:00:00'))
+  .slice(0, 5)
+  .map((item) => ({ date: item.dt_txt.slice(5, 10), temp: item.main.temp, ... }))
+```
+
+### 3. 기온 → 계절 → 추천 메뉴로 이어지는 3단 computed 체인 (`WeatherParent.vue`)
+
+이 앱의 핵심 로직인 "날씨에 맞는 메뉴 추천"은 computed 하나가 아니라 서로
+의존하는 computed 3개로 구성됨.
+
+```js
+const currentSeason = computed(() =>
+  selectedCity.value ? (selectedCity.value.temp >= 25 ? 'hot' : 'cool') : null,
+)
+const recommendedTemp = computed(() => (currentSeason.value === 'hot' ? 'ice' : 'hot'))
+const recommendedMenu = computed(() =>
+  selectedCity.value
+    ? menuList.filter((menu) => menu.season === 'always' || menu.season === currentSeason.value)
+    : [],
+)
+```
+
+`currentSeason`(도시 기온 → 계절 판정) → `recommendedTemp`(계절의 반대 온도를
+추천 — 더운 계절엔 ICE, 추운 계절엔 HOT) → `recommendedMenu`(계절 태그로
+메뉴 필터링) 순서로 이어짐. `recommendedTemp`가 `currentSeason`의 "반대"
+값을 반환한다는 점을 놓치면 로직을 잘못 이해하기 쉬움.
+
+### 4. 사용자 선택이 추천값을 덮어쓰는 가격 계산 (`CafeMenuCard.vue`, `cafeStore.js`)
+
+메뉴마다 기본으로는 `recommendedTemp`(위 3번 로직)를 따라 HOT/ICE가
+정해지지만, 사용자가 카드에서 직접 HOT/ICE를 누르면 그 선택이 우선함.
+`cafeStore.getTempChoice(menuId, fallback)`이 이 우선순위를 처리함 —
+저장된 선택이 있으면 그 값을, 없으면 `fallback`(추천값)을 반환.
+
+```js
+function getTempChoice(menuId, fallback = 'hot') {
+  return tempChoice.value[menuId] || fallback
+}
+```
+
+가격(`price`)은 이 값에 따라 `priceHot`/`priceIce` 중 하나를 골라 계산되므로,
+도시를 바꿔 추천값이 달라져도 사용자가 이미 선택해둔 메뉴의 가격은 그대로
+유지됨.
