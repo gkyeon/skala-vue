@@ -39,6 +39,60 @@
 Vue 3 (Composition API, `<script setup>`), Vite, Vue Router, Pinia, Axios,
 Element Plus, OpenWeatherMap API (현재 날씨 / 5일 예보 / 대기질)
 
+## 파일 구조
+
+```
+src/
+├── App.vue                    # 앱 셸 — nav(햄버거 반응형), 라우트 전환 애니메이션
+├── main.js
+├── router/
+│   └── index.js               # 라우트 정의
+├── views/                     # 페이지 단위 컴포넌트
+│   ├── HomeView.vue           # / — 메인 대시보드
+│   ├── FavoritesView.vue      # /favorites
+│   ├── AboutView.vue          # /about
+│   ├── CityWeatherDetailView.vue  # /weather/:cityId — 예보·대기질 포함
+│   ├── CafeMenuDetailView.vue     # /cafe/:menuId
+│   ├── PracticesArchiveView.vue   # /practices — 수업 실습 아카이브
+│   └── NotFoundView.vue       # 404
+├── components/
+│   ├── assignment/gkyeon/     # 실제 앱에서 쓰는 컴포넌트
+│   │   ├── WeatherParent.vue / WeatherCard.vue / CafeMenuCard.vue
+│   │   ├── BaseDashboardCard.vue / SearchBar.vue
+│   │   ├── UnitToggler.vue / FavoriteCounter.vue
+│   │   └── WeatherMockup.vue 등 Mockup 단계 컴포넌트(연습 아카이브용)
+│   └── practices/             # 수업 실습 코드 (/practices에서만 렌더링)
+│       ├── basic/             # v-directive, lifecycle, slot 등 20여 개
+│       └── library/           # Element Plus 코드 챌린지 3개
+├── stores/                    # Pinia
+│   ├── configStore.js         # 온도 단위(°C/°F)
+│   ├── cafeStore.js           # 메뉴 HOT/ICE 선택 · 즐겨찾기
+│   └── cityFavoriteStore.js   # 도시 즐겨찾기
+├── composables/
+│   └── useCityWeather.js      # 실시간 날씨 fetch (Home·즐겨찾기 공용)
+├── data/
+│   └── menuList.js            # 카페 메뉴 데이터
+├── utils/
+│   ├── weatherLabel.js        # 날씨 코드 → 한글 라벨
+│   ├── weatherTheme.js        # 날씨 상태 → accent 컬러/아이콘
+│   └── recommendCaption.js    # 날씨×기온 추천 문구 생성
+└── assets/
+    ├── base.css                # 디자인 토큰 (라이트/다크 자동 전환)
+    └── main.css
+```
+
+## 라우트
+
+| 경로 | 설명 |
+|---|---|
+| `/` | 메인 대시보드 (날씨 + 카페 메뉴 추천) |
+| `/favorites` | 즐겨찾기한 도시·메뉴 모아보기 |
+| `/about` | 소개, 트러블슈팅 |
+| `/weather/:cityId` | 도시 날씨 상세 + 5일 예보 + 대기질 |
+| `/cafe/:menuId` | 카페 메뉴 상세 |
+| `/practices` | 수업 실습 코드 아카이브 |
+| `/:pathMatch(.*)*` | 404 |
+
 ## 배포 링크
 
 - https://skala-vue-dusky-zeta.vercel.app/
@@ -237,3 +291,12 @@ function getTempChoice(menuId, fallback = 'hot') {
 가격(`price`)은 이 값에 따라 `priceHot`/`priceIce` 중 하나를 골라 계산되므로,
 도시를 바꿔 추천값이 달라져도 사용자가 이미 선택해둔 메뉴의 가격은 그대로
 유지됨.
+
+## 알려진 제한사항
+
+- 즐겨찾기(도시·메뉴)와 °C/°F 단위 설정은 Pinia의 메모리 상태로만 관리됨.
+  localStorage 등에 저장하지 않아 새로고침하면 초기화됨.
+- OpenWeatherMap 무료 플랜은 호출 횟수 제한이 있음. 메인 화면 진입 시
+  9개 도시를 한 번에 병렬 호출하므로, 짧은 시간에 반복 새로고침하면
+  요청이 실패할 수 있음.
+- API 요청 실패 시 에러 문구만 표시하고 재시도 버튼은 제공하지 않음.
