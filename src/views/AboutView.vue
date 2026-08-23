@@ -17,27 +17,27 @@ const features = [
   {
     icon: Sunny,
     title: '9개 도시 실시간 날씨',
-    desc: '서울, 수원, 부산... 이렇게 9개 도시 날씨를 OpenWeatherMap에서 실시간으로 긁어옴.',
+    desc: '서울·수원·부산·대구·인천·광주·대전·울산·전주 9개 도시의 실시간 기온과 날씨 상태를 OpenWeatherMap API로 조회함.',
   },
   {
     icon: Refresh,
     title: '날씨 기반 카페 메뉴 추천',
-    desc: '더운 도시 고르면 아이스 위주로, 선선하면 핫 위주로 메뉴가 추천됨. 디저트나 건강 메뉴는 계절 태그로 알아서 걸러짐.',
+    desc: '선택한 도시 기온이 25도 이상이면 ICE, 미만이면 HOT 메뉴를 우선 추천함. season 태그로 디저트·건강 메뉴도 함께 필터링됨.',
   },
   {
     icon: Star,
     title: '즐겨찾기 (도시 ♡ / 메뉴 ☆)',
-    desc: '도시는 하트, 메뉴는 별 눌러서 찜. 위에 카운터 숫자도 바로 바뀌고 즐겨찾기 페이지 가면 몰아서 볼 수 있음.',
+    desc: '도시 카드의 하트, 메뉴 카드의 별을 클릭하면 즐겨찾기로 등록되고 상단 카운터에 즉시 반영됨. 즐겨찾기 페이지에서 모아볼 수 있음.',
   },
   {
     icon: Odometer,
     title: '섭씨/화씨 단위 전환 + 5일 예보',
-    desc: '°C/°F는 아무 데서나 바꿀 수 있고, 도시 눌러서 상세로 들어가면 습도랑 풍속에 5일치 예보까지 나옴.',
+    desc: '°C/°F 단위를 전역으로 전환할 수 있으며, 도시 상세 페이지에서 습도·풍속과 5일 예보를 확인할 수 있음.',
   },
   {
     icon: Moon,
     title: '시스템 다크모드 자동 대응',
-    desc: '핸드폰이나 컴퓨터 다크모드 켜져 있으면 앱도 알아서 어둡게 바뀜. 버튼 따로 안 만들어도 됨.',
+    desc: 'OS 다크모드 설정에 따라 별도 토글 없이 화면 톤이 자동으로 전환됨.',
   },
 ]
 
@@ -45,42 +45,42 @@ const myAdditions = [
   {
     title: '카페 메뉴 추천 컨셉',
     file: 'WeatherParent.vue',
-    desc: '원래 스펙은 그냥 날씨 대시보드였는데, 심심해서 카페 메뉴 추천을 붙여봄.',
+    desc: '날씨 대시보드 단일 주제에 카페 메뉴 추천 기능을 결합함. 스펙에 없는 확장 컨셉임.',
   },
   {
     title: '도시 9개 · 카페 메뉴 8종 데이터',
     file: 'useCityWeather.js / menuList.js',
-    desc: '도시는 대구·인천·광주·대전·울산·전주 6개 더 넣었고, 메뉴 8개는 스펙에 아예 없어서 그냥 내가 다 지어냄.',
+    desc: '기본 3개 도시 외 대구·인천·광주·대전·울산·전주 6개를 추가함. 카페 메뉴 8종은 스펙에 정의되어 있지 않아 직접 설계함.',
   },
   {
     title: '최근 조회 도시 기록 (watch)',
     file: 'WeatherCafeRecommend.vue — recentCities',
-    desc: '도시 하나 고를 때마다 watch로 감시해서 최근 본 도시 3개까지 기록해둠.',
+    desc: '선택한 도시를 watch로 감시하여 최근 조회한 도시 3개를 기록하는 로직을 추가함.',
   },
   {
     title: '날씨 기반 추천 카피 자동 생성',
     file: 'recommendCaption.js',
-    desc: '날씨랑 기온 조합해서 추천 멘트를 16가지 자동으로 뽑아내게 만듦. 매번 똑같은 말 뜨면 재미없어서.',
+    desc: '날씨 상태 8종과 기온(hot/cool)을 조합해 총 16가지 추천 문구를 자동 생성하는 기능을 구현함.',
   },
   {
     title: '즐겨찾기 store 2개',
     file: 'cafeStore.js / cityFavoriteStore.js',
-    desc: '즐겨찾기가 메뉴 따로 도시 따로라서 store도 두 개로 나눠서 만듦.',
+    desc: '스펙은 단위 변환 store(configStore) 1개만 요구하나, 메뉴 즐겨찾기와 도시 즐겨찾기 store를 각각 별도로 구현함.',
   },
   {
     title: '즐겨찾기 전용 페이지',
     file: 'FavoritesView.vue — /favorites',
-    desc: '찜한 거 모아보는 페이지가 없길래 하나 새로 만듦.',
+    desc: '찜한 도시와 메뉴를 한 화면에서 확인할 수 있는 전용 View와 Route를 추가함.',
   },
   {
     title: '대기질(미세먼지) API 연동',
     file: 'CityWeatherDetailView.vue — air_pollution',
-    desc: '날씨 API가 좌표를 같이 주길래 그거 그대로 써서 미세먼지 API도 붙여봄.',
+    desc: '현재 날씨 API 응답의 좌표 데이터를 재사용하여 대기질(미세먼지) API를 추가로 연동함.',
   },
   {
     title: '날씨 상태별 다이내믹 테마',
     file: 'weatherTheme.js',
-    desc: '날씨 상태마다 색이랑 아이콘이 다르게 나오게 하고 싶어서 테마 파일 하나 따로 뺌.',
+    desc: '날씨 상태 6종(맑음·흐림·비·눈·뇌우·안개)에 따라 accent 컬러·그라디언트·아이콘이 전환되는 디자인 시스템을 구현함.',
   },
 ]
 
@@ -95,24 +95,35 @@ const techStack = [
 
 const troubleshooting = [
   {
-    title: '"상세보기" 버튼이 온도 숫자 뒤에 가려져서 안 보임',
-    desc: '눌러도 반응이 없어서 한참 봤는데, 예전 실습 때 쓰던 전역 CSS(practice.css)에 .weather-card, .btn-detail 이름이 이미 있었고 새로 만든 컴포넌트가 그 이름을 그대로 써버려서 스타일이 새어 들어온 거였음. 클래스명을 wc-card, wc-badge처럼 고유 접두어로 싹 바꾸니까 바로 해결됨.',
+    title: '전역 CSS 클래스명 충돌로 "상세보기" 버튼이 가려짐',
+    problem: '상세보기 버튼 클릭이 동작하지 않고, 버튼이 온도 숫자 뒤에 가려져 화면에 표시되지 않음.',
+    cause:
+      '기존 실습에서 사용하던 전역 CSS(practice.css)에 .weather-card, .btn-detail 클래스명이 이미 존재했고, 신규 컴포넌트가 동일한 클래스명을 재사용하면서 전역 스타일 규칙(position: absolute 등)이 그대로 적용됨.',
+    fix: '컴포넌트 클래스명을 wc-card, wc-badge 등 고유 접두어로 변경하여 충돌을 제거함.',
   },
   {
-    title: '날씨 상태가 "온흐림", "실 비"처럼 나옴',
-    desc: '처음엔 인코딩 깨진 줄 알았는데 아니고, OpenWeatherMap이 lang=kr로 줄 때 번역 자체가 원래 어색한 거였음. weather[0].main 영문 코드(Clear/Clouds/Rain...) 기준으로 한글 라벨 직접 매핑하는 파일(weatherLabel.js) 하나 만들어서 해결.',
+    title: '날씨 상태가 "온흐림", "실 비"처럼 부자연스럽게 표시됨',
+    problem: '날씨 상태 텍스트가 인코딩이 깨진 것처럼 부자연스럽게 표시됨.',
+    cause: '인코딩 문제가 아니라 OpenWeatherMap의 lang=kr 자동 번역(weather[0].description) 자체가 부자연스러운 번역이었음.',
+    fix: 'weather[0].main(Clear/Clouds/Rain 등 영문 코드) 기준으로 한글 라벨을 직접 매핑하는 유틸(weatherLabel.js)을 구현하여 적용함.',
   },
   {
-    title: '홈 링크가 다른 페이지 가도 계속 활성 색으로 보임',
-    desc: '/about 같은 데 가도 "🏠 메인"이 계속 파란색이길래 찾아보니, router-link-active가 부분 일치라서 모든 경로가 "/"로 시작하니까 항상 걸리는 거였음. router-link-exact-active로 바꿔서 고침.',
+    title: '홈 링크가 다른 페이지에서도 항상 활성 색으로 표시됨',
+    problem: '"🏠 메인" 링크가 /about, /favorites 등 다른 페이지에서도 계속 활성 색으로 표시됨.',
+    cause: 'Vue Router의 router-link-active 클래스는 부분 일치 기준이므로, 모든 경로가 "/"로 시작하는 이상 홈 링크가 항상 활성 상태로 인식됨.',
+    fix: '정확히 일치할 때만 적용되는 router-link-exact-active 클래스 기준으로 스타일을 재적용함.',
   },
   {
-    title: '화면 좁히면 nav 메뉴가 다 뭉개짐',
-    desc: '반응형 만들면서 폭 줄여봤더니 링크 4개랑 단위토글, 즐겨찾기 카운터가 한 줄에 다 우겨넣어져서 글자끼리 겹쳐버림. 640px 밑에서는 링크를 다 숨기고 햄버거 버튼 하나로 바꿔서, 누르면 드롭다운으로 펼쳐지게 만듦. 페이지 이동하면 자동으로 닫히게 처리.',
+    title: '화면 폭이 좁아지면 네비게이션 메뉴가 겹쳐 표시됨',
+    problem: '640px 이하로 화면 폭을 줄이면 링크 4개와 단위 토글·즐겨찾기 카운터가 한 줄에 겹쳐 표시됨.',
+    cause: 'nav-links에 flex-wrap만 적용되어 있어, 좁은 화면에서 줄바꿈되며 다른 요소와 공간을 다투는 구조였음.',
+    fix: '640px 미만에서는 링크를 숨기고 햄버거 버튼으로 대체함. 클릭 시 드롭다운으로 펼쳐지고, 라우트 변경 시 자동으로 닫히도록 처리함.',
   },
   {
-    title: '폭을 극단적으로 줄이면 카드가 깨짐',
-    desc: '최소 폭을 아예 안 걸어놨더니 300px 밑으로 줄일 때 카드 안 글자랑 배지가 서로 겹치기 시작함. body에 min-width: 320px 걸어서 그 밑으로는 그냥 가로 스크롤이 뜨게 처리함. 억지로 찌그러지는 것보단 스크롤 생기는 게 나음.',
+    title: '화면 폭을 극단적으로 줄이면 카드 레이아웃이 깨짐',
+    problem: '화면 폭을 300px 이하로 줄이면 카드 내부 텍스트와 배지가 서로 겹쳐 표시됨.',
+    cause: '최소 폭 제한이 설정되어 있지 않아, 뷰포트가 좁아질수록 grid/flex 레이아웃이 한계 없이 축소됨.',
+    fix: 'body에 min-width: 320px를 설정하여, 그 이하에서는 레이아웃이 깨지는 대신 가로 스크롤이 발생하도록 처리함.',
   },
 ]
 </script>
@@ -121,21 +132,21 @@ const troubleshooting = [
   <div class="about-container">
     <div class="about-hero">
       <h1 class="about-title">☕️ 날씨 기반 카페 추천</h1>
-      <p class="about-lead">도시 날씨에 어울리는 카페 메뉴 추천해주는 대시보드.</p>
+      <p class="about-lead">도시 날씨에 어울리는 카페 메뉴를 추천하는 대시보드.</p>
     </div>
 
     <el-tabs v-model="activeTab" class="about-tabs">
       <el-tab-pane label="소개" name="intro">
         <p class="tab-desc">
-          원래 과제 주제는 "날씨 대시보드" 하나인데, 여기에 <strong>카페 메뉴 추천</strong>을
-          더해서 도시 기온에 맞는 메뉴 골라주는 걸로 방향 잡음.
+          과제 스펙은 날씨 대시보드 단일 주제였으나, <strong>카페 메뉴 추천</strong> 기능을
+          결합하여 도시 기온에 맞는 메뉴를 추천하는 방향으로 확장함.
         </p>
         <p class="tab-desc">
-          더운 날엔 시원한 메뉴, 선선한 날엔 따뜻한 메뉴 순으로 추천되고, 도시·메뉴
-          즐겨찾기는 브라우저에 저장됨.
+          기온이 높은 도시는 시원한 메뉴, 낮은 도시는 따뜻한 메뉴 순으로 추천되며,
+          도시·메뉴 즐겨찾기는 브라우저에 저장됨.
         </p>
 
-        <h4 class="intro-sub-title">교수님 스펙엔 없던, 내가 추가한 것</h4>
+        <h4 class="intro-sub-title">교수님 스펙 대비 직접 추가한 항목</h4>
         <div class="mine-list">
           <div v-for="item in myAdditions" :key="item.title" class="mine-row">
             <div class="mine-head">
@@ -175,7 +186,9 @@ const troubleshooting = [
               <el-icon :size="16"><WarningFilled /></el-icon>
               <h4>{{ item.title }}</h4>
             </div>
-            <p>{{ item.desc }}</p>
+            <p><span class="trouble-label">증상</span>{{ item.problem }}</p>
+            <p><span class="trouble-label">원인</span>{{ item.cause }}</p>
+            <p><span class="trouble-label">해결</span>{{ item.fix }}</p>
           </div>
         </div>
       </el-tab-pane>
@@ -366,6 +379,14 @@ const troubleshooting = [
 }
 .trouble-card p:last-child {
   margin-bottom: 0;
+}
+.trouble-label {
+  display: inline-block;
+  min-width: 40px;
+  margin-right: 6px;
+  color: var(--app-text-primary);
+  font-weight: 700;
+  font-size: 12px;
 }
 .home-btn {
   width: 100%;
