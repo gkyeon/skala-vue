@@ -9,38 +9,38 @@
 날엔 따뜻한 메뉴 순으로 추천되고, 도시/메뉴 즐겨찾기는 각각 하트(♡)와 별(☆)로
 저장됨. 도시 상세 페이지에서는 5일 예보와 미세먼지 지수도 같이 보여줌.
 
-| 화면 | 설명 |
-|---|---|
-| 메인 | 도시별 실시간 날씨 확인, 카페 메뉴 추천 |
-| 즐겨찾기 | 즐겨찾기한 도시·카페 메뉴 모아보기 |
-| 소개 | 프로젝트 소개, 트러블슈팅 |
-| 연습 모음 | Vue 실습 코드 모음집 |
+| 화면      | 설명                                    |
+| --------- | --------------------------------------- |
+| 메인      | 도시별 실시간 날씨 확인, 카페 메뉴 추천 |
+| 즐겨찾기  | 즐겨찾기한 도시·카페 메뉴 모아보기     |
+| 소개      | 프로젝트 소개, 트러블슈팅               |
+| 연습 모음 | Vue 실습 코드 모음집                    |
 
 ![1787479176639](image/README/1787479176639.jpg)
 
 ## 추가한 기능
 
-| 항목 | 내용 |
-|---|---|
-| 컨셉 | "날씨 대시보드" 단일 주제에 카페 메뉴 추천을 결합 |
-| 데이터 | 도시 9개(대구·인천·광주·대전·울산·전주 6개 추가), 카페 메뉴 8종(아메리카노~콜드브루) |
+| 항목        | 내용                                                                                                                                                             |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 컨셉        | "날씨 대시보드" 단일 주제에 카페 메뉴 추천을 결합                                                                                                                |
+| 데이터      | 도시 9개(대구·인천·광주·대전·울산·전주 6개 추가), 카페 메뉴 8종(아메리카노~콜드브루)                                                                        |
 | 반응형 로직 | `recentCities`(최근 조회 도시 3개 기록), `currentSeason`/`recommendedTemp`(기온 기반 HOT/ICE 추천), `recommendCaption`(추천 문구 자동 생성, 16가지 패턴) |
-| 컴포넌트/뷰 | `CafeMenuCard`, `CafeMenuDetailView`, `FavoritesView`(즐겨찾기 전용 페이지), `PracticesArchiveView`(연습 아카이브) |
-| store 2개 | `cafeStore`(메뉴 HOT/ICE·즐겨찾기), `cityFavoriteStore`(도시 즐겨찾기) |
-| API 확장 | 대기질(미세먼지) API 추가 연동 — 현재 날씨 응답의 좌표 재사용 |
-| 디자인/UX | 날씨 상태 6종별 다이내믹 accent 컬러, 반투명 glass UI, 시스템 다크모드 자동 대응, 모바일 햄버거 네비게이션 (애플 macOS/iOS 시스템 앱 스타일) |
+| 컴포넌트/뷰 | `CafeMenuCard`, `CafeMenuDetailView`, `FavoritesView`(즐겨찾기 전용 페이지), `PracticesArchiveView`(연습 아카이브)                                       |
+| store 2개   | `cafeStore`(메뉴 HOT/ICE·즐겨찾기), `cityFavoriteStore`(도시 즐겨찾기)                                                                                      |
+| API 확장    | 대기질(미세먼지) API 추가 연동 — 현재 날씨 응답의 좌표 재사용                                                                                                   |
+| 디자인/UX   | 날씨 상태 6종별 다이내믹 accent 컬러, 반투명 glass UI, 시스템 다크모드 자동 대응, 모바일 햄버거 네비게이션 (애플 macOS/iOS 시스템 앱 스타일)                     |
 
 ## 기술 스택
 
-| 기술 | 용도 |
-|---|---|
-| Vue 3 | Composition API, `<script setup>` |
-| Vite | 개발 서버 · 번들러 |
-| Vue Router | SPA 라우팅 |
-| Pinia | 전역 상태 관리 |
-| Axios | HTTP 통신 |
-| Element Plus | UI 컴포넌트 라이브러리 |
-| OpenWeatherMap API | 현재 날씨 / 5일 예보 / 대기질 |
+| 기술               | 용도                               |
+| ------------------ | ---------------------------------- |
+| Vue 3              | Composition API,`<script setup>` |
+| Vite               | 개발 서버 · 번들러                |
+| Vue Router         | SPA 라우팅                         |
+| Pinia              | 전역 상태 관리                     |
+| Axios              | HTTP 통신                          |
+| Element Plus       | UI 컴포넌트 라이브러리             |
+| OpenWeatherMap API | 현재 날씨 / 5일 예보 / 대기질      |
 
 ## 파일 구조
 
@@ -86,15 +86,15 @@ src/
 
 ## 라우트
 
-| 경로 | 설명 |
-|---|---|
-| `/` | 메인 대시보드 (날씨 + 카페 메뉴 추천) |
-| `/favorites` | 즐겨찾기한 도시·메뉴 모아보기 |
-| `/about` | 소개, 트러블슈팅 |
-| `/weather/:cityId` | 도시 날씨 상세 + 5일 예보 + 대기질 |
-| `/cafe/:menuId` | 카페 메뉴 상세 |
-| `/practices` | 수업 실습 코드 아카이브 |
-| `/:pathMatch(.*)*` | 404 |
+| 경로                 | 설명                                  |
+| -------------------- | ------------------------------------- |
+| `/`                | 메인 대시보드 (날씨 + 카페 메뉴 추천) |
+| `/favorites`       | 즐겨찾기한 도시·메뉴 모아보기        |
+| `/about`           | 소개, 트러블슈팅                      |
+| `/weather/:cityId` | 도시 날씨 상세 + 5일 예보 + 대기질    |
+| `/cafe/:menuId`    | 카페 메뉴 상세                        |
+| `/practices`       | 수업 실습 코드 아카이브               |
+| `/:pathMatch(.*)*` | 404                                   |
 
 ## 배포 링크
 
@@ -102,27 +102,62 @@ src/
 
 ## 단원별 커스터마이징 기록
 
-| 단계 | 구현 내용 |
-|---|---|
-| Mockup | 기본 3개 도시(서울/수원/부산) 외 도시 추가 · 온도 25도 기준 hot/cool 배지 분기 · 카드 클릭 시 상태바 갱신 · 상세보기 버튼 `@click.stop`으로 버블링 차단 |
-| Composition API | `computed`로 검색어 기반 도시 필터링(`filteredWeatherList`) · `watch(selectedCity, ...)`로 최근 조회 도시 3개 기록(`recentCities`) · `watchEffect`로 검색어 변경 로그 출력 |
-| Component 분리 | `BaseDashboardCard` / `SearchBar` / `WeatherCard` / `WeatherParent`로 분리 · 카페 메뉴 카드도 `CafeMenuCard`로 별도 분리 |
-| Router | `/`, `/about`, `/weather/:cityId`, `/cafe/:menuId`, catch-all(404) · 추가로 `/practices`, `/favorites` |
-| Pinia | `configStore`(온도 단위 상태·토글) · 추가 store 1 `cafeStore`(메뉴별 HOT/ICE·즐겨찾기) · 추가 store 2 `cityFavoriteStore`(도시 즐겨찾기) |
-| Axios | Mock → OpenWeatherMap 실시간 연동(9개 도시) · 5일 예보(정오 값만 축약) 추가 연동 · 대기질(미세먼지) API 추가 연동, AQI 배지 표시 · `try/catch` + `isLoading` 처리 |
-| UI Library | Element Plus 선택 — 버튼/인풋/아이콘/탭에 적용, 테마 변수를 프로젝트 색상 토큰에 맞게 재정의 |
-| Deployment | API 키를 `.env`로 이전, `.gitignore`에 `.env` 추가 · `npm run build`/`lint` 통과 확인 · GitHub 공개 저장소 push([링크](https://github.com/gkyeon/skala-vue)) · Vercel 배포, 환경변수 등록 |
+| 단계            | 구현 내용                                                                                                                                                                                            |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Mockup          | 기본 3개 도시(서울/수원/부산) 외 도시 추가 · 온도 25도 기준 hot/cool 배지 분기 · 카드 클릭 시 상태바 갱신 · 상세보기 버튼`@click.stop`으로 버블링 차단                                          |
+| Composition API | `computed`로 검색어 기반 도시 필터링(`filteredWeatherList`) · `watch(selectedCity, ...)`로 최근 조회 도시 3개 기록(`recentCities`) · `watchEffect`로 검색어 변경 로그 출력               |
+| Component 분리  | `BaseDashboardCard` / `SearchBar` / `WeatherCard` / `WeatherParent`로 분리 · 카페 메뉴 카드도 `CafeMenuCard`로 별도 분리                                                                  |
+| Router          | `/`, `/about`, `/weather/:cityId`, `/cafe/:menuId`, catch-all(404) · 추가로 `/practices`, `/favorites`                                                                                  |
+| Pinia           | `configStore`(온도 단위 상태·토글) · 추가 store 1 `cafeStore`(메뉴별 HOT/ICE·즐겨찾기) · 추가 store 2 `cityFavoriteStore`(도시 즐겨찾기)                                                   |
+| Axios           | Mock → OpenWeatherMap 실시간 연동(9개 도시) · 5일 예보(정오 값만 축약) 추가 연동 · 대기질(미세먼지) API 추가 연동, AQI 배지 표시 ·`try/catch` + `isLoading` 처리                             |
+| UI Library      | Element Plus 선택 — 버튼/인풋/아이콘/탭에 적용, 테마 변수를 프로젝트 색상 토큰에 맞게 재정의                                                                                                        |
+| Deployment      | API 키를`.env`로 이전, `.gitignore`에 `.env` 추가 · `npm run build`/`lint` 통과 확인 · GitHub 공개 저장소 push([링크](https://github.com/gkyeon/skala-vue)) · Vercel 배포, 환경변수 등록 |
 
 ## 트러블슈팅
 
-| # | 문제 | 원인 | 해결 |
-|---|---|---|---|
-| 1 | 상세보기 버튼이 온도 숫자 뒤에 가려져 클릭 안 됨 | 전역 CSS(`practice.css`)의 `.weather-card`/`.btn-detail`과 클래스명이 겹쳐 전역 규칙(`position: absolute` 등)이 그대로 적용됨 | 클래스명을 `wc-card`/`wc-badge`/`wc-detail-btn`처럼 고유 접두어로 변경 |
-| 2 | 날씨 상태가 "온흐림", "실 비"처럼 어색하게 표시 | 인코딩 문제가 아니라 OpenWeatherMap `lang=kr` 자동 번역(`weather[0].description`) 자체가 부자연스러움 | `weather[0].main`(영문 코드) 기준으로 한글 라벨을 직접 매핑하는 유틸(`weatherLabel.js`) 구현 |
-| 3 | 홈 링크가 다른 페이지에서도 항상 활성 색으로 표시 | `router-link-active`는 부분 일치 기준이라 모든 경로가 `/`로 시작하는 이상 항상 활성으로 인식됨 | 정확히 일치할 때만 적용되는 `router-link-exact-active` 기준으로 재적용 |
-| 4 | `npm run build`가 실패함 | `practices/basic`의 오래된 연습 파일 2개(`VrefSample.vue`, `ElementsHandling.vue`)의 문법 오류가 빌드 그래프를 깨뜨림 | 문법 오류 수정. ESLint가 잡은 미사용 import·중복 파일 등 부수 이슈도 같이 정리 |
-| 5 | 좁은 화면에서 네비게이션 메뉴가 겹쳐 표시 | `nav-links`에 `flex-wrap`만 적용되어 있어 좁은 화면에서 다른 요소와 공간을 다툼 | 640px 미만에서는 링크를 숨기고 햄버거 버튼으로 대체, 클릭 시 드롭다운 |
-| 6 | 화면을 극단적으로 좁히면 카드 레이아웃이 깨짐 | 최소 폭 제한이 없어 뷰포트가 좁아질수록 grid/flex가 한계 없이 축소됨 | `body`에 `min-width: 320px` 설정, 이하에서는 가로 스크롤 발생 |
+### 1. 전역 CSS 클래스명 충돌로 "상세보기" 버튼이 안 보임
+
+- **증상**: 날씨 카드의 상세보기 버튼이 온도 숫자 뒤에 가려져 클릭이 안 됨
+- **원인**: 전역 CSS(`practice.css`)의 `.weather-card`/`.btn-detail`과 클래스명이
+  겹쳐 전역 규칙(`position: absolute` 등)이 그대로 적용됨
+- **해결**: 클래스명을 `wc-card`/`wc-badge`/`wc-detail-btn`처럼 고유 접두어로 변경
+
+### 2. 날씨 상태가 "온흐림", "실 비"처럼 어색하게 표시됨
+
+- **증상**: 인코딩이 깨진 것처럼 부자연스러운 한글이 나옴
+- **원인**: 인코딩 문제가 아니라 OpenWeatherMap `lang=kr` 자동 번역
+  (`weather[0].description`) 자체가 부자연스러운 번역이었음
+- **해결**: `weather[0].main`(영문 코드) 기준으로 한글 라벨을 직접 매핑하는
+  유틸(`weatherLabel.js`) 구현
+
+### 3. 홈 링크가 다른 페이지에서도 항상 활성 색으로 표시됨
+
+- **증상**: `/about`, `/favorites` 등 다른 페이지에 있어도 "🏠 메인" 링크가
+  계속 활성 색으로 표시됨
+- **원인**: `router-link-active`는 부분 일치 기준이라 모든 경로가 `/`로
+  시작하는 이상 항상 활성으로 인식됨
+- **해결**: 정확히 일치할 때만 적용되는 `router-link-exact-active` 기준으로 재적용
+
+### 4. `npm run build`가 실패함
+
+- **증상**: 빌드/린트가 아예 안 돌아감
+- **원인**: `practices/basic`의 오래된 연습 파일 2개(`VrefSample.vue`,
+  `ElementsHandling.vue`)의 문법 오류가 빌드 그래프를 깨뜨림
+- **해결**: 문법 오류 수정. ESLint가 잡은 미사용 import·중복 파일 등
+  부수 이슈도 같이 정리
+
+### 5. 좁은 화면에서 네비게이션 메뉴가 겹쳐 표시됨
+
+- **증상**: 640px 이하로 화면 폭을 줄이면 링크 4개와 위젯이 한 줄에 겹쳐 표시됨
+- **원인**: `nav-links`에 `flex-wrap`만 적용되어 있어 좁은 화면에서 다른
+  요소와 공간을 다툼
+- **해결**: 640px 미만에서는 링크를 숨기고 햄버거 버튼으로 대체, 클릭 시 드롭다운
+
+### 6. 화면을 극단적으로 좁히면 카드 레이아웃이 깨짐
+
+- **증상**: 화면 폭을 300px 이하로 줄이면 카드 내부 텍스트와 배지가 서로 겹침
+- **원인**: 최소 폭 제한이 없어 뷰포트가 좁아질수록 grid/flex가 한계 없이 축소됨
+- **해결**: `body`에 `min-width: 320px` 설정, 이하에서는 가로 스크롤 발생
 
 ## 실행 방법
 
@@ -132,10 +167,12 @@ cp .env.example .env   # .env를 열어서 본인 OpenWeatherMap API 키로 교�
 npm run dev
 ```
 
-API 키는 `.env`의 `VITE_OPENWEATHER_API_KEY`로만 참조하고, 코드에는 절대
-하드코딩하지 않음. `.env`는 `.gitignore`에 포함하여 커밋하지 않음.
+( API 키는 `.env`의 `VITE_OPENWEATHER_API_KEY`로만 참조하고, 코드에는 절대
+하드코딩하지 않음.
 
-## 구현하면서 까다로웠던 로직
+ `.env`는 `.gitignore`에 포함하여 커밋하지 않음. )
+
+## 구현 로직 설명
 
 ### 1. 대기질 API의 순차 호출 처리 (`CityWeatherDetailView.vue`)
 
@@ -208,11 +245,3 @@ function getTempChoice(menuId, fallback = 'hot') {
 가격(`price`)은 이 값에 따라 `priceHot`/`priceIce` 중 하나를 골라 계산되므로,
 도시를 바꿔 추천값이 달라져도 사용자가 이미 선택해둔 메뉴의 가격은 그대로
 유지됨.
-
-## 알려진 제한사항
-
-| 항목 | 설명 |
-|---|---|
-| 상태 영속성 | 즐겨찾기(도시·메뉴), °C/°F 단위 설정이 Pinia 메모리 상태로만 관리됨. localStorage 등에 저장하지 않아 새로고침하면 초기화됨 |
-| API 호출 제한 | OpenWeatherMap 무료 플랜은 호출 횟수 제한이 있음. 메인 화면 진입 시 9개 도시를 한 번에 병렬 호출하므로, 짧은 시간에 반복 새로고침하면 요청이 실패할 수 있음 |
-| 에러 처리 | API 요청 실패 시 에러 문구만 표시하고 재시도 버튼은 제공하지 않음 |
